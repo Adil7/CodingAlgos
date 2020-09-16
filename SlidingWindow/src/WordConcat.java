@@ -59,11 +59,40 @@ public class WordConcat {
     }
 
     public static void main(String[] args) {
-        List<Integer> res = WordConcat.findWordConcat("catfoxcat", new String[] {"cat", "fox"});
-        System.out.println(res);
+//        List<Integer> res = WordConcat.findWordConcat("catfoxcat", new String[] {"cat", "fox"});
+//        System.out.println(res);
+//
+//        res = WordConcat.findWordConcat("catcatfoxfox", new String[] {"cat", "fox"});
+//        System.out.println(res);
 
-        res = WordConcat.findWordConcat("catcatfoxfox", new String[] {"cat", "fox"});
-        System.out.println(res);
+        int[] allCards = {1, 2, 3, 4, 5, 6, 7};
+        List<Integer> list = new ArrayList<>();
+        int[][] allHands = new int[21][5];
+        int cardsSelected = 0;
+        int hand = 0;
+
+        // select first card not to be in the hand
+        for(int firstCard = 0; firstCard < 7; firstCard++){
+            // select first card not to be in the hand
+            for(int secondCard = firstCard + 1; secondCard < 7; secondCard++){
+                // every card that is not the first or second will added to the hand
+                for(int i = 0; i < 7; i++){
+                    if(i != firstCard && i != secondCard){
+                        allHands[hand][cardsSelected++] = allCards[i];
+                        list.add(allCards[i]);
+                    }
+                }
+                // next hand
+                cardsSelected = 0;
+                hand++;
+                System.out.println(list);
+                list = new ArrayList<>();
+            }
+        }
+
+        //System.out.println(Arrays.deepToString(allHands));
+
+
     }
 
 }
